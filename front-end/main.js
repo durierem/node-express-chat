@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.send-btn').addEventListener('click', () => {
         const input = document.querySelector('.chat-area .input-area input');
         if (input.value.length > 0) {
-            console.log('1: emitting message')
             socket.emit('message', input.value, (response) => {
                 if (response.ok) {
                     insertMessage(response.message, { me: true });
@@ -82,7 +81,6 @@ function insertMessage(message, options = {}) {
 }
 
 function updateCounters(counter) {
-    console.log(counter)
     document.querySelector('.chat-area .messages-count').innerText = counter.total;
     counter.per_user.forEach((user_counter) => {
         document.querySelector(`[data-id="${user_counter._id}"] .messages-count`).innerText = user_counter.count;

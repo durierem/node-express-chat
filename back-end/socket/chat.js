@@ -11,9 +11,8 @@ module.exports = function (io) {
       const user = new User({ name: username, session_id: socket.id });
 
       try {
-        user.save();
+        await user.save();
 
-        // Get connected users
         const connectedSocketsIds = (await io.fetchSockets()).map((socket) => socket.id);
         const users = await User.find({
           session_id: { $in: connectedSocketsIds }
@@ -64,15 +63,14 @@ module.exports = function (io) {
       });
 
       try {
-        message.save()
+        await message.save()
         callback({ ok: true, message: message });
         socket.broadcast.emit('message', message);
-      } catch {
+      } catch (error) {
         callback({ ok: false, message: error });
       }
 
       const totalMessagesCount = await Message.countDocuments();
-      console.log(totalMessagesCount)
       const perUserMessagesCount = await Message.aggregate([
         { $match: { session_id: socket.id} },
         { $group: { _id: '$session_id', count: { $sum: 1 } } }

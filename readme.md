@@ -1,5 +1,10 @@
 # NODE EXPRESS CHAT
 
+## Usage
+
+`docker-compose up` lance mongo + back + front servi sur `http://localhost`.
+Modifiez l'ENV au besoin, notamment pour une éventuelle connexion à Mongo Atlas.
+
 ## Persistence des données
 
 2 collections : `Messages` et `Users`.
@@ -37,3 +42,6 @@ Ce fonctionnement permet de :
 1. centraliser le nombre de message côté back et éviter des compteurs locaux
 côté front
 2. utiliser des aggrégations MongoDB :p
+
+À noter que les nombres de messages par utilisateur ne concernent que les
+utilisateurs connectés.

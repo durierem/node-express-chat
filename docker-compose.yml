@@ -1,18 +1,18 @@
 services:
-  # back:
-  #   image: node
-  #   ports:
-  #     - 3000:3000
-  #   environment:
-  #     NODE_ENV: development
-  #     DB_USER: node
-  #     DB_PASS: node
-  #     DB_NAME: chat
-  #     DB_ADDRESS: mongodb://mongo:27017
-  #   volumes:
-  #     - ./back-end:/app
-  #   working_dir: /app
-  #   command: npm start
+  back:
+    image: node
+    ports:
+      - 3000:3000
+    environment:
+      NODE_ENV: development
+      DB_USER: node
+      DB_PASS: node
+      DB_NAME: chat
+      DB_ADDRESS: mongodb://mongo:27017
+    volumes:
+      - ./back-end:/app
+    working_dir: /app
+    command: npm start
 
   mongo:
     image: mongo
