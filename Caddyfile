@@ -1,0 +1,4 @@
+http://localhost:80 {
+  root * /app
+  file_server
+}
